@@ -1,0 +1,60 @@
+<mat-list>
+    <mat-list-item>
+            <a style="font-size: 21px; color: brown;" routerLink="/addjobseekerprofile/">{{logedUser}}</a>
+             &nbsp;[&nbsp;<b [innerHTML]="jskPrf.gender" style="color: blueviolet"></b>&nbsp;]&nbsp;
+        
+    </mat-list-item>
+    <mat-divider></mat-divider>    
+    <mat-list-item>
+        <b>HeadLine:</b>&nbsp; </mat-list-item>
+    <mat-list-item>
+        <p [innerHTML]="jskPrf.headLine | noSanitize"></p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <b>Key Skills:</b>&nbsp; </mat-list-item>
+    <mat-list-item>
+        <p [innerHTML]="jskPrf.keySkills | noSanitize"></p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <b>Profile Summary:</b>&nbsp; </mat-list-item>
+    <mat-list-item>
+        <p [innerHTML]="jskPrf.profileSummary | noSanitize"></p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <b>Current Address:</b>&nbsp;
+    </mat-list-item>
+    <mat-list-item>
+        <p [innerHTML]="jskPrf.currentAddress | noSanitize"></p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <b>Permanent Address:</b>&nbsp;
+    </mat-list-item>
+    <mat-list-item>
+        <p [innerHTML]="jskPrf.permanentAddress | noSanitize"></p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <b style="font-size: 21px; color: brown;">Work Experience </b>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+</mat-list>
+<mat-list *ngFor="let work of jskPrf.workExperience">
+    <mat-list-item>
+        <b style="font-size: 18px;">{{work.organisation}}&nbsp;</b>
+        <b style="font-weight: normal;">-&nbsp;{{work.designation}}</b>
+    </mat-list-item>   
+    <mat-list-item>
+        <b style="font-size: 15px;">Working From:</b>&nbsp;
+        <b style="font-size: 15px; font-weight: normal;"> {{work.startDate | date : format : timezone }} </b> -
+        <b style="font-size: 15px; font-weight: normal;" *ngIf="work.endDate !=null"> {{work.endDate | date : format : timezone }} </b>
+        <b style="font-size: 15px; font-weight: normal;" *ngIf="work.endDate ==null"> Till Present </b>
+    </mat-list-item>
+    <mat-list-item>
+        <b style="font-size: 15px;">Job Profile:</b>&nbsp; <b style="font-size: 15px; font-weight: normal;" [innerHTML]="work.jobProfile | noSanitize"></b>
+    </mat-list-item>  
+    <mat-divider></mat-divider>
+</mat-list>

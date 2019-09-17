@@ -1,0 +1,12 @@
+<div class="card">
+<b style="font-size: 24px;">Company Profile</b>
+<br><br>
+<b style="font-size: 15px;">Name:</b> 
+<p class="title">{{ employeerProfile.name }} </p>
+<b style="font-size: 15px;">About:</b> 
+<p [innerHTML]="employeerProfile.about | noSanitize"></p> 
+<b style="font-size: 15px;">Address:</b> 
+<p [innerHTML]="employeerProfile.address | noSanitize"></p> 
+<a routerLink="/add-employer-profile">Edit Profile</a>
+</div>
+

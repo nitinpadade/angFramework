@@ -1,0 +1,12 @@
+<label for="lblDateOfBirth">DateOfBirth</label>
+<mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+<mat-datepicker #picker></mat-datepicker>
+   <ng-container [formGroup]="parent">  
+    <input class="form-control"  matInput [matDatepicker] = "picker" 
+    [(ngModel)]="datevalue" required   formControlName="frmdateOfBirth" 
+    [ngClass]="{ 'is-invalid': submitted && f.frmdateOfBirth.errors }" 
+    (dateInput)="datevaluechange('input', $event)" (dateChange)="datevaluechange('change', $event)" />   
+   
+</ng-container>
+
+

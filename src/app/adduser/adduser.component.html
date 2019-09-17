@@ -1,0 +1,95 @@
+<b>Add/Edit user</b>
+<br>
+<hr>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-6 form-group">
+        <div class="form-group" >
+            <label for="lblFirstName">First Name</label>
+            <input type="text" class="form-control" [(ngModel)]="user.firstName"  
+            formControlName="frmFirstName" [ngClass]="{ 'is-invalid': submitted && f.frmFirstName.errors }"
+                required />
+            <div *ngIf="submitted  && f.frmFirstName.errors" class="has-controlError">
+                <div *ngIf="f.frmFirstName.errors.required">First Name is required</div>
+            </div>
+        </div>  
+        <div class="form-group" >
+            <label for="lblMiddleName">Middle Name</label>
+            <input type="text" class="form-control" [(ngModel)]="user.middleName"  
+            formControlName="frmMiddleName" />           
+        </div>  
+        <div class="form-group" >
+            <label for="lblLastName">Last Name</label>
+            <input type="text" class="form-control" [(ngModel)]="user.lastName"  
+            formControlName="frmLastName" [ngClass]="{ 'is-invalid': submitted && f.frmLastName.errors }"
+                required />
+            <div *ngIf="submitted  && f.frmLastName.errors" class="has-controlError">
+                <div *ngIf="f.frmLastName.errors.required">Last Name is required</div>
+            </div>
+        </div>  
+        <div class="form-group">
+            <label for="lblRole">Role</label>
+            <select class="form-control" [(ngModel)]="user.roleId"
+            formControlName="frmRole" [ngClass]="{ 'is-invalid': submitted && f.frmRole.errors }" required>
+                <option [ngValue]="null">-- Select --</option>
+                <option *ngFor="let role of roles" value={{role.id}}>
+                    {{role.name}}
+                </option>
+            </select>
+            <div *ngIf="submitted && f.frmRole.errors" class="has-controlError">
+                <div *ngIf="f.frmRole.errors.required">Role is required</div>
+            </div>
+        </div>  
+        <div class="form-group">
+            <app-datechangecomp [parent]="registerForm" required [datevalue]= "user.dateOfBirth" (updatedatevalue)= "addEvent('input', $event)"></app-datechangecomp>
+            <div *ngIf="submitted && f.frmdateOfBirth.errors" class="has-controlError">
+                    <div *ngIf="f.frmdateOfBirth.errors.required">Date Of Birth is required</div>
+                </div>  
+        </div>       
+    </div>
+    <div class="col-md-6 form-group">
+        <div class="form-group" >
+            <label for="lblEmail">Email</label>
+            <input type="text" class="form-control" [(ngModel)]="user.email"  
+            formControlName="frmEmail" [ngClass]="{ 'is-invalid': submitted && f.frmEmail.errors }"
+                required />
+            <div *ngIf="submitted  && f.frmEmail.errors" class="has-controlError">
+                <div *ngIf="f.frmEmail.errors.required">Email is required</div>
+                <div *ngIf="f.frmEmail.errors.email">Email must be a valid email address</div>
+            </div>
+        </div> 
+        <div class="form-group" >
+            <label for="lblEmail">Mobile</label>
+            <input type="text" class="form-control" [(ngModel)]="user.mobile"  
+            formControlName="frmMobile" [ngClass]="{ 'is-invalid': submitted && f.frmMobile.errors }"
+             maxlength="10" appNumbersOnly required />
+            <div *ngIf="submitted  && f.frmMobile.errors" class="has-controlError">
+                <div *ngIf="f.frmMobile.errors.required">Mobile is required</div>
+                <div *ngIf="f.frmMobile.errors.minlength">Mobile must be at least 10 characters</div>
+            </div>
+        </div>   
+        <div class="form-group" >
+            <label for="lblUsername">Username</label>
+            <input type="text" class="form-control" [(ngModel)]="user.userName"  
+            formControlName="frmUserName" [ngClass]="{ 'is-invalid': submitted && f.frmUserName.errors }"
+                required />
+            <div *ngIf="submitted  && f.frmUserName.errors" class="has-controlError">
+                <div *ngIf="f.frmUserName.errors.required">Username is required</div>
+            </div>
+        </div>
+        <div class="form-group" >
+            <label for="lblPassword">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="user.password"  
+            formControlName="frmPassword" [ngClass]="{ 'is-invalid': submitted && f.frmPassword.errors }"
+                required />
+            <div *ngIf="submitted  && f.frmPassword.errors" class="has-controlError">
+                <div *ngIf="f.frmPassword.errors.required">Password is required</div>
+                <div *ngIf="f.frmPassword.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 form-group">
+        <br/>
+        <button class="btn btn-primary">Save</button>&nbsp;
+        <button (click)="goBack()" class="btn btn-primary">Go Back</button>
+    </div>
+</form>

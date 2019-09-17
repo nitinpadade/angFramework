@@ -1,0 +1,36 @@
+<b>Company Profile</b>
+<br>
+<hr>
+<form [formGroup]="empProfileForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-12 form-group">
+        <div class="form-group" >
+            <label for="lblName">Company</label>
+            <input type="text" class="form-control" [(ngModel)]="employeerProfile.name"  
+            formControlName="frmName" [ngClass]="{ 'is-invalid': submitted && f.frmName.errors }"
+                required />
+            <div *ngIf="submitted  && f.frmName.errors" class="has-controlError">
+                <div *ngIf="f.frmName.errors.required">Name is required</div>
+            </div>
+        </div>           
+        <div class="form-group" >
+            <label for="lblAbout">About</label>
+            <ejs-richtexteditor [(ngModel)]="employeerProfile.about" formControlName = "frmAbout" required></ejs-richtexteditor>   
+            <div *ngIf="submitted  && f.frmAbout.errors" class="has-controlError">
+                <div *ngIf="f.frmAbout.errors.required">About is required</div>
+            </div>        
+        </div> 
+        <div class="form-group" >
+            <label for="lblAddress">Address</label>
+            <ejs-richtexteditor [(ngModel)]="employeerProfile.address" formControlName = "frmAddress" required></ejs-richtexteditor>   
+            <div *ngIf="submitted  && f.frmAddress.errors" class="has-controlError">
+                <div *ngIf="f.frmAddress.errors.required">Address is required</div>
+            </div>        
+        </div> 
+    </div>
+    
+    <div class="col-md-12 form-group">
+        <br/>
+        <button class="btn btn-primary">Save</button>&nbsp;
+        <button (click)="goBack()" class="btn btn-primary">Go Back</button>
+    </div>
+</form>

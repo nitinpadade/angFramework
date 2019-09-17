@@ -1,0 +1,27 @@
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Date Of Birth</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col"><a routerLink="/adduser/0">Add New</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users" routerLink="/adduser/{{user.id}}">
+            <td scope="row" style="width: 160px;">
+                {{user.firstName}} {{user.lastName}}
+            </td>
+            <td> {{user.dateOfBirth}} </td>
+            <td> {{user.email}}</td>
+            <td> {{user.mobile}}</td>
+            <td>
+                    <a routerLink="/adduser/{{user.id}}">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button value="Next" (click)="next()" *ngIf ="pageNo < totalPages">Next</button>&nbsp;
+<button value="Previous" (click)="previous()" *ngIf ="pageNo > 1">Previous</button>
